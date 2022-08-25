@@ -9,8 +9,8 @@ class Departamento extends Model
 {
     use HasFactory;
 
-    public function pais(){
-        return $this->belongsTo(Pais::class);
+    public function paises(){
+        return $this->belongsTo(Paise::class);
     }
 
     public function municipios(){

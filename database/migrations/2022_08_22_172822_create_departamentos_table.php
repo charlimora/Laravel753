@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('departamentos', function (Blueprint $table) {
             $table->id();
             $table->string('nom_departa');
-            $table->unsignedBigInteger('id_pais');
+            $table->unsignedBigInteger('id_country');
             $table->timestamps();
 
-            $table->foreign('id_pais')->references('id')->on('pais')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_country')->references('id')->on('paises')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

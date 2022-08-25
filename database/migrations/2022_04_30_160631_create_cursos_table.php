@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->unsignedBigInteger('materia_id');
+            //$table->unsignedBigInteger('materia_id');
 
             //$table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

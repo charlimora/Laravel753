@@ -36,7 +36,7 @@ return new class extends Migration
             //se crean las llaves foráneas
             //$table->foreign(['id_pais_expedi', 'id_pais_naci'])->references('id')->on('pais')->onDelete('cascade')->onUpdate('cascade');
             //$table->foreign(['id_departa_expedi', 'id_departa_naci'])->references('id')->on('departamentos')->onDelete('cascade')->onUpdate('cascade');
-            //$table->foreign('id_muni_expedi')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_muni_expedi')->references('id')->on('municipios');
             $table->foreign('id_muni_naci')->references('id')->on('municipios');
             $table->foreign('id_curso')->references('id')->on('cursos'); //pregunta: ¿Puede tener integridad referencial pese a ser null ??
         });

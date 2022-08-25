@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pais extends Model
+class Paise extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
     //relación uno a muchos
     public function departamentos(){
         return $this->hasMany(Departamento::class);
