@@ -9,7 +9,6 @@ class Paise extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
     //relación uno a muchos
     public function departamentos(){
         return $this->hasMany(Departamento::class);

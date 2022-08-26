@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Departamento;
+use App\Models\Estudiante;
+use App\Models\Municipio;
 use App\Models\Paise;
 use Illuminate\Http\Request;
 
@@ -27,7 +30,9 @@ class EstudiantesController extends Controller
     {
         $paises = Paise::all();
         $departamentos = Departamento::all();
-        return view('estudiantes.create', compact('paises','departamentos'));
+        $municipios = Municipio::all();
+        $cursos = Curso::all();
+        return view('estudiantes.create', compact('paises','departamentos', 'municipios','cursos'));
     }
 
     /**
@@ -38,7 +43,24 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Estudiante();
+
+        $student->tipo_doc = $request->input('tipo_doc');
+        $student->num_doc = $request->input('num_doc');
+        if ($request->hasFile('document_iden')){ //si desde ese campo viene un archivo hacer:
+            $student->document_iden = $request->file('document_iden')->store('public/students/documents');
+        }
+        $student->id_muni_expedi = $request->input('id_muni_expedi');
+        $student->fechaExpedi = $request->input('fechaExpedi');
+        $student->nombres = $request->input('nombres');
+        $student->apellido1 = $request->input('apellido1');
+        $student->apellido2 = $request->input('apellido2');
+        $student->genero = $request->input('genero');
+        $student->estrato = $request->input('estrato');
+        $student->id_curso = $request->input('id_curso');
+        $student->id_muni_naci = $request->input('id_muni_naci');
+        $student->save();
+        return 'La información se ha guardado correctamente';
     }
 
     /**
