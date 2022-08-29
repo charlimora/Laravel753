@@ -71,7 +71,15 @@ class EstudiantesController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Estudiante::find($id);
+        $muniExpedi = Municipio::join(
+            'estudiantes', 'estudiantes.id_muni_expedi','municipios.id'
+            )
+            ->where('estudiantes.id', $id)
+            ->select('municipios.*')
+            //->select('municipios.nom_muni')
+            ->get();
+        return $muniExpedi;
     }
 
     /**
