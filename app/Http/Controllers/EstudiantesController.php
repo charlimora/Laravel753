@@ -18,7 +18,9 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        //
+        $students = Estudiante::all();
+        return view('estudiantes.index', compact('students'));
+        //return $students;
     }
 
     /**
@@ -72,14 +74,17 @@ class EstudiantesController extends Controller
     public function show($id)
     {
         $student = Estudiante::find($id);
-        $muniExpedi = Municipio::join(
+        $query1 = Municipio::join(
             'estudiantes', 'estudiantes.id_muni_expedi','municipios.id'
             )
+            ->join('departamentos','departamentos.id','municipios.id_departa')
+            ->join('paises', 'paises.id', 'departamentos.id_country')
             ->where('estudiantes.id', $id)
-            ->select('municipios.*')
-            //->select('municipios.nom_muni')
+            ->select('municipios.nom_muni as nomMuni', 'departamentos.nom_departa as NomDepart', 'paises.nom_pais as nomPais')
             ->get();
-        return $muniExpedi;
+
+        //return $muniExpedi;
+        return view('estudiantes.show', compact('query1'));
     }
 
     /**
