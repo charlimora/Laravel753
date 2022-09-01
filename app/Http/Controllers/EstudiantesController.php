@@ -83,14 +83,14 @@ class EstudiantesController extends Controller
             ->select('municipios.nom_muni as nomMuni', 'departamentos.nom_departa as NomDepart', 'paises.nom_pais as nomPais')
             ->get();
 
-            $query2 = Municipio::join(
-                'estudiantes', 'estudiantes.id_muni_naci','municipios.id'
-                )
-                ->join('departamentos','departamentos.id','municipios.id_departa')
-                ->join('paises', 'paises.id', 'departamentos.id_country')
-                ->where('estudiantes.id', $id)
-                ->select('municipios.nom_muni as nomMuni', 'departamentos.nom_departa as NomDepart', 'paises.nom_pais as nomPais')
-                ->get();
+        $query2 = Municipio::join(
+            'estudiantes', 'estudiantes.id_muni_naci','municipios.id'
+            )
+            ->join('departamentos','departamentos.id','municipios.id_departa')
+            ->join('paises', 'paises.id', 'departamentos.id_country')
+            ->where('estudiantes.id', $id)
+            ->select('municipios.nom_muni as nomMuni', 'departamentos.nom_departa as NomDepart', 'paises.nom_pais as nomPais')
+            ->get();
 
         //return $muniExpedi;
         return view('estudiantes.show', compact('query1','query2'));
